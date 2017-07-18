@@ -39,6 +39,8 @@ if (process.env.NODE_ENV !== 'production') {
   menuTemplate.push({
     label: 'View',
     submenu: [{
+      role: 'reload',
+    }, {
       label: 'Show Developer Tools',
       accelerator: process.platform === 'darwin' ? 'Command + Alt + I' : 'Ctrl + Alt + I',
       click: (item, focusedWindow) => focusedWindow.toggleDevTools(),
