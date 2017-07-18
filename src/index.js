@@ -17,11 +17,18 @@ const menuTemplate = [{
   label: 'File',
   submenu: [{
     label: 'Add New Todo',
+    accelerator: process.platform === 'darwin' ? 'Command + N' : 'Ctrl + N',
     click: createAddWindow,
+  }, {
+    label: 'Clear All Todos',
+    accelerator: process.platform === 'darwin' ? 'Command + D' : 'Ctrl + D',
+    click() {
+      mainWindow.webContents.send('todo:clear');
+    },
   }, {
     label: 'Quit',
     accelerator: process.platform === 'darwin' ? 'Command + Q' : 'Ctrl + Q',
-    click: () => app.quit(),
+    click() { app.quit(); },
   }],
 }];
 

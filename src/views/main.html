@@ -12,12 +12,16 @@
   <ul class="todo-list"></ul>
   <script>
     const { ipcRenderer } = require('electron');
+    const todoList = document.querySelector('.todo-list');
     ipcRenderer.on('todo:add', (evt, todoTitle) => {
       const li = document.createElement('li');
       const text = document.createTextNode(todoTitle);
       li.appendChild(text);
-      document.querySelector('.todo-list').appendChild(li);
-    })
+      todoList.appendChild(li);
+    });
+    ipcRenderer.on('todo:clear', () => {
+      todoList.innerHTML = '';
+    });
   </script>
 </body>
 </html>
