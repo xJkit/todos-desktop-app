@@ -8,6 +8,9 @@ let addWindow;
 const createAddWindow = () => {
   addWindow = new BrowserWindow({ width: 300, height: 200, title: 'Add New Todo' });
   addWindow.loadURL(`file://${__dirname}/views/add.html`);
+  addWindow.on('closed', () => {
+    addWindow = null;
+  });
 };
 
 const menuTemplate = [{
@@ -53,4 +56,5 @@ app.on('ready', () => {
 
 ipcMain.on('todo:add', (evt, todoTitle) => {
   mainWindow.webContents.send('todo:add', todoTitle);
+  addWindow.close();
 });

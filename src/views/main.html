@@ -10,15 +10,14 @@
   <h1>使用上方工具列新增 Todos</h1>
   <p>===========================</p>
   <ul class="todo-list"></ul>
-  <p>===========================</p>
   <script>
     const { ipcRenderer } = require('electron');
-    let todos = [];
     ipcRenderer.on('todo:add', (evt, todoTitle) => {
-      todos = todos.concat(todoTitle);
-      todoList = todos.map(todo => `<li>${todo}</li>`);
-      document.querySelector('.todo-list').innerHTML = todoList.join('');
-    });
+      const li = document.createElement('li');
+      const text = document.createTextNode(todoTitle);
+      li.appendChild(text);
+      document.querySelector('.todo-list').appendChild(li);
+    })
   </script>
 </body>
 </html>
