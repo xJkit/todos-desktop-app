@@ -13,7 +13,6 @@
     </label>
     <button type="submit">Add</button>
   </form>
-  <ul class="show-todos"></ul>
   <script>
     const { ipcRenderer } = require('electron');
     let todos = [];
@@ -22,11 +21,6 @@
       const newTodoTitle = evt.target[0].value;
       ipcRenderer.send('todo:add', newTodoTitle);
       document.querySelector('#todo-input').value = '';
-    });
-    ipcRenderer.on('todo:add', (evt, todoTitle) => {
-      todos = todos.concat(todoTitle);
-      todoList = todos.map(todo => `<li>${todo}</li>`);
-      document.querySelector('.show-todos').innerHTML = todoList.join('');
     });
   </script>
 </body>

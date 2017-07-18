@@ -52,5 +52,5 @@ app.on('ready', () => {
 });
 
 ipcMain.on('todo:add', (evt, todoTitle) => {
-  addWindow.webContents.send('todo:add', todoTitle);
+  mainWindow.webContents.send('todo:add', todoTitle);
 });
